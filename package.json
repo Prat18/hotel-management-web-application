@@ -1,0 +1,35 @@
+{
+  "name": "meanproject",
+  "version": "1.0.0",
+  "description": "Hotel booking online application using MEAN Stack with Angular 2.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prat18/MEAN-Stack-WT-HotelManagement.git"
+  },
+  "keywords": [
+    "MEAN",
+    "Stack",
+    "Hotel",
+    "Management",
+    "Application"
+  ],
+  "author": "prat__18",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Prat18/MEAN-Stack-WT-HotelManagement/issues"
+  },
+  "homepage": "https://github.com/Prat18/MEAN-Stack-WT-HotelManagement#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongodb": "^3.0.5",
+    "mongoose": "^5.0.11"
+  },
+  "devDependencies": {
+    "@angular/cli": "^1.7.3"
+  }
+}
