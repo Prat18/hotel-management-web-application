@@ -10,6 +10,12 @@ import { AuthService } from '../../services/auth.service';
 export class RegisterComponent implements OnInit {
 
   form: FormGroup;
+  message;
+  messageClass;
+  emailValid;
+  emailMessage;
+  usernameValid;
+  usernameMessage;
 
   constructor(
     private FormBuilder: FormBuilder,
@@ -87,12 +93,41 @@ export class RegisterComponent implements OnInit {
     }
 
     this.authService.registerUser(user).subscribe(data => {
-      console.log(data);
-      console.log(this.form.get('email').value);
+      if(!data.success){
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+      }else{
+        this.messageClass = 'alert alert-success';
+      }
     });
   }
 
+  checkEmail(){
+    const email = this.form.get('email').value;
+    this.authService.CheckEmail(email).subscribe(data => {
+      if(!data.success){
+        this.emailValid = false;
+        this.emailMessage = data.message;
+      }else{
+        this.emailValid = true;
+        this.emailMessage = this.message;
+      }
+    });
+  }
 
+  checkUsername(){
+    const name = this.form.get('user').value;
+    this.authService.CheckEmail(name).subscribe(data => {
+      if(!data.success){
+        this.usernameValid = false;
+        this.usernameMessage = data.message;
+      }else{
+        this.usernameValid = true;
+        this.usernameMessage = data.message;
+      }
+    });
+
+  }
 
   ngOnInit() {
   }
