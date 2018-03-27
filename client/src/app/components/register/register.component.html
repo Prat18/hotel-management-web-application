@@ -1,5 +1,11 @@
 <h1 class="page-header">Register here!</h1>
 
+<div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+
 <form [formGroup]="form" (submit)="onRegisterSubmit()">
 
   <div class="form-group">
@@ -12,6 +18,7 @@
         <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">This field is required</li>
         <li *ngIf="form.controls.username.errors?.minlength && form.controls.username.dirty || form.controls.username.errors?.maxlength && form.controls.username.dirty ">Minimum characters: 3, Maximum characters: 15</li>
         <li *ngIf="(form.controls.username.errors?.validateUsername && form.controls.username.dirty)">User name must not have any special characters</li>
+        <li *ngIf = usernameMessage>{{usernameMessage}}</li>
       </ul>
     </div>
   </div>

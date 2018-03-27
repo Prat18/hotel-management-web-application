@@ -11,6 +11,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { AlertModule } from 'ngx-bootstrap';
 import { HttpModule } from '@angular/http';
 import { AuthService } from './services/auth.service';
+import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
+//import { FlashMessagesModule } from 'angular2-flash-messages';
 
 
 @NgModule({
@@ -20,7 +23,9 @@ import { AuthService } from './services/auth.service';
     HomeComponent,
     DashboardComponent,
     ExecutiveComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +33,7 @@ import { AuthService } from './services/auth.service';
     AppRoutingModule,
     AlertModule.forRoot(),
     HttpModule
+    //FlashMessagesModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
