@@ -15,17 +15,18 @@ export class AuthService {
   ) { }
 
   createAuthenticationHeaers(){
-    this.loadToken();
-    this.options = new RequestOptions({
-      headers: new Headers({
-        'Content-Type' : 'application/json',
-        'authorization' : this.authToken
-      })
+      this.loadToken();
+      this.options = new RequestOptions({
+        headers: new Headers({
+          'Content-Type' : 'application/json',
+          'authorization' : this.authToken
+        })
     })
   }
 
   loadToken(){
     this.authToken = localStorage.getItem('token');
+    console.log(this.authToken);
   }
 
   registerUser(user) {
@@ -55,6 +56,11 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
     this.user = user;
+  }
+
+  bookHotel(book){ 
+    this.createAuthenticationHeaers();
+    return this.http.post(this.domain + '/booking/book',book, this.options).map(res => res.json());
   }
 
   getProfile(){

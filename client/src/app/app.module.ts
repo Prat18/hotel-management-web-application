@@ -13,6 +13,8 @@ import { HttpModule } from '@angular/http';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SuiteComponent } from './components/suite/suite.component';
+import { StandardComponent } from './components/standard/standard.component';
 //import { FlashMessagesModule } from 'angular2-flash-messages';
 
 
@@ -25,7 +27,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     ExecutiveComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    SuiteComponent,
+    StandardComponent
   ],
   imports: [
     BrowserModule,

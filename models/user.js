@@ -133,6 +133,7 @@ const userSchema = new Schema({
   password: { type: String, required: true, validate: passwordValidators }
 });
 
+
 // Schema Middleware to Encrypt Password
 userSchema.pre('save', function(next) {
   // Ensure password is new or modified before applying encryption

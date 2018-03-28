@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database')
+const Booking = require('../models/Booking')
 
 module.exports = (router) => {
 
@@ -69,24 +70,24 @@ module.exports = (router) => {
     router.post('/login', (req, res) => {
         if (!req.body.username) {
             res.json({ success: false, message: 'No username was provided' }); // Return error
-          } else {
+        } else {
             // Check if password was provided
             if (!req.body.password) {
-              res.json({ success: false, message: 'No password was provided.' }); // Return error
-            }else{
-                User.findOne({ username: req.body.username.toLowerCase() }, (err,user) => {
-                    if(err){
-                        res.json({success: false, message: err})
-                    }else{
-                        if(!user){
-                            res.json({ success: false, message: 'username not found'});
-                        }else{
+                res.json({ success: false, message: 'No password was provided.' }); // Return error
+            } else {
+                User.findOne({ username: req.body.username.toLowerCase() }, (err, user) => {
+                    if (err) {
+                        res.json({ success: false, message: err })
+                    } else {
+                        if (!user) {
+                            res.json({ success: false, message: 'username not found' });
+                        } else {
                             const validPassword = user.comparePassword(req.body.password);
                             if (!validPassword) {
-                                res.json({ success: false, message: 'password invalid'})
-                            }else{
-                                const token = jwt.sign({ userId: user._id }, config.secret, {expiresIn: '24h'});
-                                res.json({ success: true, message: 'Success!', token: token, user: {username: user.username } });
+                                res.json({ success: false, message: 'password invalid' })
+                            } else {
+                                const token = jwt.sign({ userId: user._id }, config.secret, { expiresIn: '24h' });
+                                res.json({ success: true, message: 'Success!', token: token, user: { username: user.username } });
                             }
                         }
                     }
@@ -95,31 +96,36 @@ module.exports = (router) => {
         }
     });
 
-    router.use((req, res, next) => {
-       const token = req.headers['authorization'];
-       if(!token){
-           res.json({ success: false, message: 'No token provided'});
-       }else{
-           jwt.verify(token, config.secret, (err, decoded) => {
-               if(err){
-                   res.json({ success: false, message: 'Token invalid: ' + err });
-               }else{
-                   req.decoded = decoded;
-                   next();
-               }                
-           });
-       }
-    })
+     router.use((req, res, next) => {
+        const token = req.headers['authorization']; // Create token found in headers
+        // Check if token was found in headers
+        console.log(token);
+        if (!token) {
+            console.log('fuck again' + token + "<------");
+            res.json({ success: false, message: 'fuck this shit' }); // Return error
+        } else {
+            // Verify the token is valid
+            jwt.verify(token, config.secret, (err, decoded) => {
+                // Check if error is expired or invalid
+                if (err) {
+                    res.json({ success: false, message: 'Token invalid: ' + err }); // Return error for token validation
+                } else {
+                    req.decoded = decoded; // Create global variable to use in any request beyond
+                    next(); // Exit middleware
+                }
+            });
+        }
+    }); 
 
-    router.get('/profile', (req, res)=> {
-        User.findOne({ _id: req.decoded.userId}).select('username email').exec((err, user) => {
-            if(err){
-                res.json({ success: false, message: err})
-            }else {
-                if(!user){
-                    res.json({ success: false, message: 'user not found'})
-                }else{
-                    res.json({success:true, user: user});
+    router.get('/profile', (req, res) => {
+        User.findOne({ _id: req.decoded.userId }).select('username email').exec((err, user) => {
+            if (err) {
+                res.json({ success: false, message: err })
+            } else {
+                if (!user) {
+                    res.json({ success: false, message: 'user not found' })
+                } else {
+                    res.json({ success: true, user: user });
                 }
             }
         })
