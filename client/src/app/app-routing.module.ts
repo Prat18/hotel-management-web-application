@@ -6,6 +6,8 @@ import { ExecutiveComponent } from './components/executive/executive.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { StandardComponent } from './components/standard/standard.component';
+import { SuiteComponent } from './components/suite/suite.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -13,8 +15,10 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent},
     { path: 'login', component: LoginComponent},
     { path: 'profile', component: ProfileComponent},
-    {path: 'executive', component: ExecutiveComponent},
-    {path: '**', component: HomeComponent}
+    { path: 'executive', component: ExecutiveComponent},
+    { path: 'suite', component: SuiteComponent },
+    { path: 'standard', component: StandardComponent},
+    { path: '**', component: HomeComponent}
 ]
 
 @NgModule({

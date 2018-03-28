@@ -1,0 +1,97 @@
+<h2 class="page-header">Standard Room</h2>
+
+<!-- Custom Success/Error Message -->
+<div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+
+<!-- Standard room booking -->
+<form [formGroup]="form" (submit)="onBookSubmit()">
+
+  <!-- Phone number -->
+  <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <div>
+      <input class="form-control" type="text" name="phone" formControlName="phone" />
+      <!-- Validation -->
+      <ul class="help-block">
+        <li *ngIf="form.controls.phone.errors?.required && form.controls.phone.dirty">This field is required.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Password Field  -->
+  <div class="form-group">
+    <label for="address">Address</label>
+    <div>
+      <input class="form-control" type="text" name="address" formControlName="address" />
+      <!-- Validation -->
+      <ul class="help-block">
+        <li *ngIf="form.controls.address.errors?.required && form.controls.address.dirty">This field is required.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="arrive">Arrival</label>
+    <div>
+      <input class="form-control" type="date" name="arrival" formControlName="arrival" />
+      <!-- Validation -->
+      <ul class="help-block">
+        <li *ngIf="form.controls.arrival.errors?.required && form.controls.arrival.dirty">This field is required.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="departure">Departure</label>
+    <div>
+      <input class="form-control" type="date" name="departure" formControlName="departure" />
+      <!-- Validation -->
+      <ul class="help-block">
+        <li *ngIf="form.controls.departure.errors?.required && form.controls.departure.dirty">This field is required.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="adults">Number of adults</label>
+    <div>
+      <input class="form-control" type="text" name="adults" formControlName="adults" />
+      <!-- Validation -->
+      <ul class="help-block">
+        <li *ngIf="form.controls.adults.errors?.required && form.controls.adults.dirty">This field is required.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="children">Number of children</label>
+    <div>
+      <input class="form-control" type="text" name="children" formControlName="children" />
+      <!-- Validation -->
+      <ul class="help-block">
+        <li *ngIf="form.controls.children.errors?.required && form.controls.children.dirty">This field is required.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="condition">Select Air condition</label>
+    <div>
+        <select  name="condition" formControlName="condition" >
+          <option value="AC">Air conditioned room</option>
+          <option value="NAC">Normal room</option>
+        </select>
+      <!-- Validation -->
+      <ul class="help-block">
+        <li *ngIf="form.controls.condition.errors?.required && form.controls.condition.dirty">This field is required.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <input  class="btn btn-primary" type="submit" value="Book" />
+</form>

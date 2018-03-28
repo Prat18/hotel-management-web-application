@@ -17,7 +17,9 @@
       <ul class="nav navbar-nav navbar-right">
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/dashboard">Dashboard</a></li>
         <li><a routerLink = "/profile">Profile</a></li>
-        <li><a href="#contact">Blog</a></li>
+        <li><a routerLink="/executive">Executive</a></li>
+        <li><a routerLink="/suite">Suite</a></li>
+        <li><a routerLink="/standard">standard</a></li>
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/login">Login</a></li>
         <li><a href="#contact" (click)="onLogoutClick()">Logout</a></li>
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/register">Register</a></li>
